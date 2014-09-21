@@ -10,6 +10,6 @@ import javax.ws.rs.core.MediaType;
 public class JerseyResource {
     @GET
     public String greeting() {
-        return "Hello Jersey";
+        return "Hello jersey";
     }
 }
