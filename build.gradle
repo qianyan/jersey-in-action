@@ -5,6 +5,18 @@ apply plugin: 'jetty'
 repositories {
     mavenCentral()
 }
+idea {
+    project {
+        jdkName = JavaVersion.VERSION_1_7
+        languageLevel = JavaVersion.VERSION_1_7
+
+        ipr.withXml { xml ->
+            def mapping = xml.node.component.find { it.@name == "VcsDirectoryMappings" }.mapping
+            mapping.@vcs = 'Git'
+            mapping.@directory = '$PROJECT_DIR$'
+        }
+    }
+}
 
 ext {
     jerseyVersion = '2.6'
@@ -14,4 +26,7 @@ dependencies {
     compile "org.glassfish.jersey.core:jersey-server:$jerseyVersion"
 
     runtime "org.glassfish.jersey.containers:jersey-container-servlet:$jerseyVersion"
+
+    testCompile("org.glassfish.jersey.test-framework:jersey-test-framework-core:$jerseyVersion",
+            "org.glassfish.jersey.containers:jersey-container-grizzly2-servlet:$jerseyVersion")
 }
