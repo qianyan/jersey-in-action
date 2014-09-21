@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'jetty'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    jerseyVersion = '2.6'
+}
+
+dependencies {
+    compile "org.glassfish.jersey.core:jersey-server:$jerseyVersion"
+
+    runtime "org.glassfish.jersey.containers:jersey-container-servlet:$jerseyVersion"
+}
