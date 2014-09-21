@@ -20,13 +20,18 @@ idea {
 
 ext {
     jerseyVersion = '2.6'
+    javaInjectVersion = '1'
+    hk2Version = '2.2.0'
 }
 
 dependencies {
-    compile "org.glassfish.jersey.core:jersey-server:$jerseyVersion"
+    compile("org.glassfish.jersey.core:jersey-server:$jerseyVersion",
+            "javax.inject:javax.inject:$javaInjectVersion",
+            "org.glassfish.hk2:hk2-api:$hk2Version");
 
     runtime "org.glassfish.jersey.containers:jersey-container-servlet:$jerseyVersion"
 
     testCompile("org.glassfish.jersey.test-framework:jersey-test-framework-core:$jerseyVersion",
-            "org.glassfish.jersey.containers:jersey-container-grizzly2-servlet:$jerseyVersion")
+            "org.glassfish.jersey.containers:jersey-container-grizzly2-servlet:$jerseyVersion",
+            "org.glassfish.hk2:hk2-locator:$hk2Version")
 }

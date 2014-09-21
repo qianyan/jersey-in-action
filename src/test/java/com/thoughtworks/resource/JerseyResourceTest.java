@@ -18,6 +18,6 @@ public class JerseyResourceTest extends AbstractResourceTest {
                 .get(new GenericType<String>() {
                 });
 
-        assertThat(greeting, is("Hello jersey"));
+        assertThat(greeting, is("Hello Jersey DI"));
     }
 }
