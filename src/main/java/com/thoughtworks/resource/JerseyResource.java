@@ -5,11 +5,12 @@ import com.thoughtworks.service.JerseyService;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.TEXT_PLAIN)
 public class JerseyResource {
     private final JerseyService service;
 
@@ -19,7 +20,8 @@ public class JerseyResource {
     }
 
     @GET
-    public String greeting() {
-        return "Hello " + service.getGreeting();
+    @Path("/people/{id}")
+    public String greeting(@PathParam("id") int id) {
+        return "Hello " + service.getPerson(id).getName();
     }
 }

@@ -5,6 +5,21 @@ apply plugin: 'jetty'
 repositories {
     mavenCentral()
 }
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    ext {
+        h2Version = '1.4.180'
+    }
+
+    dependencies {
+        classpath "com.h2database:h2:$h2Version"
+    }
+}
+
 idea {
     project {
         jdkName = JavaVersion.VERSION_1_7
@@ -22,6 +37,7 @@ ext {
     jerseyVersion = '2.6'
     javaInjectVersion = '1'
     hk2Version = '2.2.0'
+    h2Version = '1.4.180'
 }
 
 dependencies {
@@ -29,7 +45,8 @@ dependencies {
             "javax.inject:javax.inject:$javaInjectVersion",
             "org.glassfish.hk2:hk2-api:$hk2Version");
 
-    runtime "org.glassfish.jersey.containers:jersey-container-servlet:$jerseyVersion"
+    runtime ("org.glassfish.jersey.containers:jersey-container-servlet:$jerseyVersion",
+            "com.h2database:h2:$h2Version")
 
     testCompile("org.glassfish.jersey.test-framework:jersey-test-framework-core:$jerseyVersion",
             "org.glassfish.jersey.containers:jersey-container-grizzly2-servlet:$jerseyVersion",
